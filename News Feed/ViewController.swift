@@ -17,7 +17,38 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .lightGray
+        tableView.allowsSelection = false
         self.title = "Hey"
+        fetchFromServer()
+    }
+    
+    func fetchFromServer()
+    {
+        let url = URL(string: "https://api.rss2json.com/v1/api.json?rss_url=http://www.abc.net.au/news/feed/51120/rss.xml")
+        print(url!)
+        URLSession.shared.dataTask(with: url!) { data, response, error in
+            if(error != nil)
+            {
+                print(error!)
+                return
+            }
+            guard let data = data else { return }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                let dict = json as! [String:AnyObject]
+                for newsFeed in dict["items"] as! [Dictionary<String, Any>]
+                {
+                    //TODO: Parse out as class to be processed later
+                    print(newsFeed["title"])
+                    print(newsFeed["description"])
+                }
+                
+            }
+            catch
+            {
+                print("Exception while trying to create JSON")
+            }
+        }.resume()
     }
 }
 
