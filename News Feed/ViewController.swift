@@ -25,7 +25,6 @@ class ViewController: UIViewController {
     func fetchFromServer()
     {
         let url = URL(string: "https://api.rss2json.com/v1/api.json?rss_url=http://www.abc.net.au/news/feed/51120/rss.xml")
-        print(url!)
         URLSession.shared.dataTask(with: url!) { data, response, error in
             if(error != nil)
             {
@@ -37,8 +36,6 @@ class ViewController: UIViewController {
                 let jsonDecoder = JSONDecoder()
                 let dateDecoder = DateFormatter()
                 dateDecoder.dateFormat = "yyyy-mm-dd HH:mm:ss"
-                let dateFormatDisplay = DateFormatter()
-                dateFormatDisplay.dateFormat = "MMM dd, yyyy hh:mm a"
                 jsonDecoder.dateDecodingStrategy = .formatted(dateDecoder)
                 
                 self.newsItems = try jsonDecoder.decode(newsFeed.self, from: data)
@@ -64,17 +61,25 @@ extension ViewController:UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let dateFormatDisplay = DateFormatter()
+        dateFormatDisplay.dateFormat = "MMM dd, yyyy hh:mm a"
+        guard let newsCell = newsItems?.items?[indexPath.row] else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "normalNewsCell",for: indexPath)
+            return cell
+        }
         if(indexPath.row == 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "highlightedCell",for: indexPath)
-            cell.textLabel?.text = newsItems!.items?[0].title
+            let cell = tableView.dequeueReusableCell(withIdentifier: "highlightedCell",for: indexPath) as! ProminentTableViewCell
+            cell.titleLabel.text = newsCell.title
+            cell.dateLabel.text = dateFormatDisplay.string(from:newsCell.date!)
             cell.layer.masksToBounds = true
             cell.layer.cornerRadius = 15.0
             return cell
         }
         else
         {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "normalNewsCell",for: indexPath)
-            cell.textLabel?.text = newsItems!.items?[indexPath.row].title
+            let cell = tableView.dequeueReusableCell(withIdentifier: "normalNewsCell",for: indexPath) as! RegularNewsTableViewCell
+            cell.titleLabel.text = newsCell.title
+            cell.dateLabel.text = dateFormatDisplay.string(from:newsCell.date!)
             cell.layer.masksToBounds = true
             cell.layer.cornerRadius = 15.0
             return cell
