@@ -81,6 +81,8 @@ extension ViewController:UITableViewDataSource{
             cell.titleLabel.text = newsCell.title
             cell.dateLabel.text = dateFormatDisplay.string(from:newsCell.date!)
             cell.customImageView.loadImageFromURLString(urlString: newsCell.enclosure.link)
+            cell.customImageView.layer.masksToBounds = true
+            cell.layer.cornerRadius = 15.0
             cell.layer.masksToBounds = true
             cell.layer.cornerRadius = 15.0
             return cell
@@ -90,30 +92,12 @@ extension ViewController:UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "normalNewsCell",for: indexPath) as! RegularNewsTableViewCell
             cell.titleLabel.text = newsCell.title
             cell.dateLabel.text = dateFormatDisplay.string(from:newsCell.date!)
+            cell.customImageView.layer.masksToBounds = true
+            cell.layer.cornerRadius = 15.0
             cell.customImageView.loadImageFromURLString(urlString: newsCell.thumbNailURL!)
             cell.layer.masksToBounds = true
             cell.layer.cornerRadius = 15.0
             return cell
         }
-    }
-}
-
-extension UIImageView {
-    func loadImageFromURLString(urlString:String) {
-        var url = URL(string: urlString)
-        var urlComp = URLComponents(url: url!, resolvingAgainstBaseURL: false)
-        urlComp?.query = nil
-        url = urlComp?.url
-        URLSession.shared.dataTask(with: url!) { data, response, error in
-            if(error != nil)
-            {
-                print(error)
-                return
-            }
-            guard let data = data else { return }
-            DispatchQueue.main.async {
-                self.image = UIImage(data: data)
-            }
-        }.resume()
     }
 }
