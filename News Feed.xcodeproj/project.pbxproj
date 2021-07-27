@@ -16,6 +16,7 @@
 		01A138D426B02A4E00CA6A78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01A138D226B02A4E00CA6A78 /* LaunchScreen.storyboard */; };
 		01A138DF26B02A4E00CA6A78 /* News_FeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A138DE26B02A4E00CA6A78 /* News_FeedTests.swift */; };
 		01A138EA26B02A4E00CA6A78 /* News_FeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A138E926B02A4E00CA6A78 /* News_FeedUITests.swift */; };
+		01FDE4D726B05868008A48FB /* newsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FDE4D626B05868008A48FB /* newsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		01A138E526B02A4E00CA6A78 /* News FeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "News FeedUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01A138E926B02A4E00CA6A78 /* News_FeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News_FeedUITests.swift; sourceTree = "<group>"; };
 		01A138EB26B02A4E00CA6A78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01FDE4D626B05868008A48FB /* newsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				01A138D226B02A4E00CA6A78 /* LaunchScreen.storyboard */,
 				01A138D526B02A4E00CA6A78 /* Info.plist */,
 				01A138CD26B02A4B00CA6A78 /* News_Feed.xcdatamodeld */,
+				01FDE4D626B05868008A48FB /* newsModel.swift */,
 			);
 			path = "News Feed";
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				01A138C926B02A4B00CA6A78 /* ViewController.swift in Sources */,
 				01A138C526B02A4B00CA6A78 /* AppDelegate.swift in Sources */,
 				01A138CF26B02A4B00CA6A78 /* News_Feed.xcdatamodeld in Sources */,
+				01FDE4D726B05868008A48FB /* newsModel.swift in Sources */,
 				01A138C726B02A4B00CA6A78 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
