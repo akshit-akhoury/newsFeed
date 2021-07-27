@@ -64,7 +64,7 @@ extension ViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.row == 0)
         {
-            return 250
+            return 300
         }
         else
         {
@@ -89,10 +89,6 @@ extension ViewController:UITableViewDataSource{
             cell.titleLabel.text = newsCell.title
             cell.dateLabel.text = dateFormatDisplay.string(from:newsCell.date!)
             cell.customImageView.loadImageFromURLString(urlString: newsCell.enclosure.link)
-            cell.customImageView.layer.masksToBounds = true
-            cell.layer.cornerRadius = 15.0
-            cell.layer.masksToBounds = true
-            cell.layer.cornerRadius = 15.0
             return cell
         }
         else
@@ -100,12 +96,16 @@ extension ViewController:UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "normalNewsCell",for: indexPath) as! RegularNewsTableViewCell
             cell.titleLabel.text = newsCell.title
             cell.dateLabel.text = dateFormatDisplay.string(from:newsCell.date!)
-            cell.customImageView.layer.masksToBounds = true
-            cell.layer.cornerRadius = 15.0
             cell.customImageView.loadImageFromURLString(urlString: newsCell.thumbNailURL!)
-            cell.layer.masksToBounds = true
-            cell.layer.cornerRadius = 15.0
             return cell
         }
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
+    {
+        let cellLayer = CALayer()
+        cellLayer.cornerRadius = 15
+        cellLayer.backgroundColor = UIColor.gray.cgColor
+        cellLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 5, dy: 5)
+        cell.layer.mask = cellLayer
     }
 }
