@@ -18,12 +18,19 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         tableView.backgroundColor = .lightGray
         tableView.allowsSelection = false
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         self.title = "Hey"
         fetchFromServer()
     }
     
+    @objc private func refreshData()
+    {
+        fetchFromServer()
+    }
     func fetchFromServer()
     {
+        newsItems = newsFeed()
         let url = URL(string: "https://api.rss2json.com/v1/api.json?rss_url=http://www.abc.net.au/news/feed/51120/rss.xml")
         URLSession.shared.dataTask(with: url!) { data, response, error in
             if(error != nil)
@@ -40,6 +47,7 @@ class ViewController: UIViewController {
                 
                 self.newsItems = try jsonDecoder.decode(newsFeed.self, from: data)
                 DispatchQueue.main.async {
+                    self.tableView.refreshControl?.endRefreshing()
                     self.tableView.reloadData()
                 }
             }
