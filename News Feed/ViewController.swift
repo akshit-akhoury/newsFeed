@@ -12,6 +12,13 @@ class ViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var newsItems: newsFeed?
     
+    let prominentCellHeight = 300.0
+    let regularCellHeight = 150.0
+    let cellCornerRadius = 15
+    let insetPaddingX = 10
+    let insetPddingY = 8
+    let fetchURLString = "https://api.rss2json.com/v1/api.json?rss_url=http://www.abc.net.au/news/feed/51120/rss.xml"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -20,18 +27,17 @@ class ViewController: UIViewController {
         tableView.allowsSelection = false
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        self.title = "Hey"
-        fetchFromServer()
+        fetchNewsFromServer()
     }
     
     @objc private func refreshData()
     {
-        fetchFromServer()
+        fetchNewsFromServer()
     }
-    func fetchFromServer()
+    func fetchNewsFromServer()
     {
         newsItems = newsFeed()
-        let url = URL(string: "https://api.rss2json.com/v1/api.json?rss_url=http://www.abc.net.au/news/feed/51120/rss.xml")
+        let url = URL(string: fetchURLString)
         URLSession.shared.dataTask(with: url!) { data, response, error in
             if(error != nil)
             {
@@ -64,11 +70,11 @@ extension ViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.row == 0)
         {
-            return 300
+            return CGFloat(prominentCellHeight)
         }
         else
         {
-            return 150
+            return CGFloat(regularCellHeight)
         }
     }
 }
@@ -81,7 +87,7 @@ extension ViewController:UITableViewDataSource{
         let dateFormatDisplay = DateFormatter()
         dateFormatDisplay.dateFormat = "MMM dd, yyyy hh:mm a"
         guard let newsCell = newsItems?.items?[indexPath.row] else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "normalNewsCell",for: indexPath)
+            let cell = UITableViewCell()
             return cell
         }
         if(indexPath.row == 0){
@@ -103,9 +109,12 @@ extension ViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
         let cellLayer = CALayer()
-        cellLayer.cornerRadius = 15
+        cellLayer.cornerRadius = CGFloat(cellCornerRadius)
         cellLayer.backgroundColor = UIColor.gray.cgColor
-        cellLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 10, dy: 8)
+        cellLayer.frame = CGRect(x: cell.bounds.origin.x,
+                                 y: cell.bounds.origin.y,
+                                 width: cell.bounds.width,
+                                 height: cell.bounds.height).insetBy(dx: CGFloat(insetPaddingX), dy: CGFloat(insetPddingY))
         cell.layer.mask = cellLayer
     }
 }
