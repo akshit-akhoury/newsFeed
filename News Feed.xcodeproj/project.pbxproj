@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		01A138C526B02A4B00CA6A78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A138C426B02A4B00CA6A78 /* AppDelegate.swift */; };
 		01A138C726B02A4B00CA6A78 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A138C626B02A4B00CA6A78 /* SceneDelegate.swift */; };
-		01A138C926B02A4B00CA6A78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A138C826B02A4B00CA6A78 /* ViewController.swift */; };
+		01A138C926B02A4B00CA6A78 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A138C826B02A4B00CA6A78 /* HomeViewController.swift */; };
 		01A138CC26B02A4B00CA6A78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01A138CA26B02A4B00CA6A78 /* Main.storyboard */; };
 		01A138CF26B02A4B00CA6A78 /* News_Feed.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01A138CD26B02A4B00CA6A78 /* News_Feed.xcdatamodeld */; };
 		01A138D126B02A4E00CA6A78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01A138D026B02A4E00CA6A78 /* Assets.xcassets */; };
@@ -43,7 +43,7 @@
 		01A138C126B02A4B00CA6A78 /* News Feed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "News Feed.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01A138C426B02A4B00CA6A78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01A138C626B02A4B00CA6A78 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		01A138C826B02A4B00CA6A78 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		01A138C826B02A4B00CA6A78 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		01A138CB26B02A4B00CA6A78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		01A138CE26B02A4B00CA6A78 /* News_Feed.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = News_Feed.xcdatamodel; sourceTree = "<group>"; };
 		01A138D026B02A4E00CA6A78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,18 +109,14 @@
 		01A138C326B02A4B00CA6A78 /* News Feed */ = {
 			isa = PBXGroup;
 			children = (
-				01A138C426B02A4B00CA6A78 /* AppDelegate.swift */,
-				01A138C626B02A4B00CA6A78 /* SceneDelegate.swift */,
-				01A138C826B02A4B00CA6A78 /* ViewController.swift */,
-				01A138CA26B02A4B00CA6A78 /* Main.storyboard */,
+				01FDE4E226B09597008A48FB /* Storyboards */,
+				01FDE4E126B09579008A48FB /* models */,
+				01FDE4E026B0954F008A48FB /* customClasses */,
+				01FDE4DF26B0952B008A48FB /* ViewControllers */,
+				01FDE4DE26B0951A008A48FB /* Delegates */,
 				01A138D026B02A4E00CA6A78 /* Assets.xcassets */,
-				01A138D226B02A4E00CA6A78 /* LaunchScreen.storyboard */,
 				01A138D526B02A4E00CA6A78 /* Info.plist */,
 				01A138CD26B02A4B00CA6A78 /* News_Feed.xcdatamodeld */,
-				01FDE4D626B05868008A48FB /* newsModel.swift */,
-				01FDE4D826B079BF008A48FB /* ProminentTableViewCell.swift */,
-				01FDE4DA26B07C75008A48FB /* RegularNewsTableViewCell.swift */,
-				01FDE4DC26B089E9008A48FB /* CustomImageView.swift */,
 			);
 			path = "News Feed";
 			sourceTree = "<group>";
@@ -141,6 +137,50 @@
 				01A138EB26B02A4E00CA6A78 /* Info.plist */,
 			);
 			path = "News FeedUITests";
+			sourceTree = "<group>";
+		};
+		01FDE4DE26B0951A008A48FB /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				01A138C426B02A4B00CA6A78 /* AppDelegate.swift */,
+				01A138C626B02A4B00CA6A78 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		01FDE4DF26B0952B008A48FB /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				01A138C826B02A4B00CA6A78 /* HomeViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		01FDE4E026B0954F008A48FB /* customClasses */ = {
+			isa = PBXGroup;
+			children = (
+				01FDE4D826B079BF008A48FB /* ProminentTableViewCell.swift */,
+				01FDE4DA26B07C75008A48FB /* RegularNewsTableViewCell.swift */,
+				01FDE4DC26B089E9008A48FB /* CustomImageView.swift */,
+			);
+			path = customClasses;
+			sourceTree = "<group>";
+		};
+		01FDE4E126B09579008A48FB /* models */ = {
+			isa = PBXGroup;
+			children = (
+				01FDE4D626B05868008A48FB /* newsModel.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		01FDE4E226B09597008A48FB /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				01A138D226B02A4E00CA6A78 /* LaunchScreen.storyboard */,
+				01A138CA26B02A4B00CA6A78 /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,7 +315,7 @@
 			files = (
 				01FDE4D926B079BF008A48FB /* ProminentTableViewCell.swift in Sources */,
 				01FDE4DD26B089E9008A48FB /* CustomImageView.swift in Sources */,
-				01A138C926B02A4B00CA6A78 /* ViewController.swift in Sources */,
+				01A138C926B02A4B00CA6A78 /* HomeViewController.swift in Sources */,
 				01FDE4DB26B07C75008A48FB /* RegularNewsTableViewCell.swift in Sources */,
 				01A138C526B02A4B00CA6A78 /* AppDelegate.swift in Sources */,
 				01A138CF26B02A4B00CA6A78 /* News_Feed.xcdatamodeld in Sources */,

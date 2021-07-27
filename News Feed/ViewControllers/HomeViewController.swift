@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     var newsItems: newsFeed?
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController:UITableViewDelegate{
+extension HomeViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.row == 0)
         {
@@ -78,7 +78,7 @@ extension ViewController:UITableViewDelegate{
         }
     }
 }
-extension ViewController:UITableViewDataSource{
+extension HomeViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsItems?.items?.count ?? 0
     }
