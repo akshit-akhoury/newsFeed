@@ -53,7 +53,16 @@ class ViewController: UIViewController {
 }
 
 extension ViewController:UITableViewDelegate{
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if(indexPath.row == 0)
+        {
+            return 250
+        }
+        else
+        {
+            return 150
+        }
+    }
 }
 extension ViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
