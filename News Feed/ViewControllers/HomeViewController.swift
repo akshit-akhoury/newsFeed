@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.init(red: 0, green: 51/255, blue: 0, alpha: 1)]
-        self.title = "Hello"
+        self.title = "GeeksForGeeks"
         fetchNewsFromServer()
     }
     
