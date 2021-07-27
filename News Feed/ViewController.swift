@@ -105,7 +105,7 @@ extension ViewController:UITableViewDataSource{
         let cellLayer = CALayer()
         cellLayer.cornerRadius = 15
         cellLayer.backgroundColor = UIColor.gray.cgColor
-        cellLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 5, dy: 5)
+        cellLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 10, dy: 8)
         cell.layer.mask = cellLayer
     }
 }
