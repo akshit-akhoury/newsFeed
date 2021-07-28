@@ -13,7 +13,7 @@ class HomeViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var newsItems: newsFeed?
     
-    let prominentCellHeight = 300.0
+    let prominentCellHeight = 450.0
     let regularCellHeight = 150.0
     let cellCornerRadius = 15
     let insetPaddingX = 10
@@ -139,5 +139,6 @@ extension HomeViewController:UITableViewDataSource{
             let sfvc = SFSafariViewController.init(url: URL(string: linkString)!)
             self.navigationController?.pushViewController(sfvc, animated: true)
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
