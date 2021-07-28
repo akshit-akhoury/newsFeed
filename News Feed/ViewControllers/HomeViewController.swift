@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class HomeViewController: UIViewController {
     
@@ -24,7 +25,6 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .lightGray
-        tableView.allowsSelection = false
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.init(red: 0, green: 51/255, blue: 0, alpha: 1)]
@@ -97,6 +97,7 @@ extension HomeViewController:UITableViewDataSource{
             cell.titleLabel.text = newsCell.title
             cell.dateLabel.text = dateFormatDisplay.string(from:newsCell.date!)
             cell.customImageView.loadImageFromURLString(urlString: newsCell.enclosure.link)
+            cell.linkString = newsCell.link
             return cell
         }
         else
@@ -105,6 +106,7 @@ extension HomeViewController:UITableViewDataSource{
             cell.titleLabel.text = newsCell.title
             cell.dateLabel.text = dateFormatDisplay.string(from:newsCell.date!)
             cell.customImageView.loadImageFromURLString(urlString: newsCell.thumbNailURL!)
+            cell.linkString = newsCell.link
             return cell
         }
     }
@@ -118,5 +120,24 @@ extension HomeViewController:UITableViewDataSource{
                                  width: cell.bounds.width,
                                  height: cell.bounds.height).insetBy(dx: CGFloat(insetPaddingX), dy: CGFloat(insetPddingY))
         cell.layer.mask = cellLayer
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        var linkString = ""
+        if(indexPath.row==0)
+        {
+            let newsCell = cell as! ProminentTableViewCell
+            linkString = newsCell.linkString ?? ""
+        }
+        else
+        {
+            let newsCell = cell as! RegularNewsTableViewCell
+            linkString = newsCell.linkString ?? ""
+        }
+        if(linkString != "")
+        {
+            let sfvc = SFSafariViewController.init(url: URL(string: linkString)!)
+            self.navigationController?.pushViewController(sfvc, animated: true)
+        }
     }
 }

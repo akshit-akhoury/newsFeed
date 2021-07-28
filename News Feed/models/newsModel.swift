@@ -16,13 +16,14 @@ struct newsItems:Codable {
         case summary = "description"
         case thumbNailURL = "thumbnail"
         case date = "pubDate"
-        case title,enclosure
+        case title,link,enclosure
     }
     
     let title: String?
     let date: Date?
     let thumbNailURL: String?
     let summary: String?
+    let link: String?
     let enclosure: enclosure
 }
 

@@ -12,5 +12,6 @@ class RegularNewsTableViewCell: UITableViewCell {
     @IBOutlet weak var customImageView: CustomImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    
+    var linkString:String?
+
 }
